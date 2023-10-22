@@ -1,0 +1,17 @@
+#-- SSH commands to run Linux commands remotely --#
+-------------------------------------------------------------------------------
+ssh -t -q oracle@pm "(df -h /u02; hostname -f; date)" 
+
+# -- below is the explaination of above command 
+-t :- allocate psuedo shell to run the commands on remote server.
+-q :- run commands quitely.
+"(command1;command2;command3;..;commandlast)" :- this will intact series of linux commands and run them one by one and will show you the output on your guest for ex. powershell, putty,etc.
+
+or looping multiple servers :-
+--------------------------------------------------------------------
+In below example we've taken for loop and use it for looping servers one by one and in the "do...done" block code we mention our ssh command to run on all servers and show the output for the same.
+
+for servers in server1 server2 server3 server4 ;
+do 
+ssh -t -q $servers "(df -h /u02; hostname -f ; date)" ;
+done;
